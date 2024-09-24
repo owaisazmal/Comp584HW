@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style type="text/css">
+      /* CLIENT-SPECIFIC STYLES */
+      body,
+      table,
+      td,
+      a {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+      }
+
+      /* RESET STYLES */
+      img {
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+      }
+      table {
+        border-collapse: collapse !important;
+      }
+      body {
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+
+      /* iOS BLUE LINKS */
+      a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+      }
+
+      /* GMAIL BLUE LINKS */
+      u + #body a {
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+
+      /* SAMSUNG MAIL BLUE LINKS */
+      #MessageViewBody a {
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+
+      /* Universal styles for links and stuff */
+
+      /* Keyframes for slow glowing maroon line effect */
+      @keyframes glow-border {
+        0% {
+          border-color: maroon transparent transparent transparent;
+          box-shadow: 0 0 5px maroon;
+          border-width: 2px 0 0 0;
+        }
+        25% {
+          border-color: maroon maroon transparent transparent;
+          box-shadow: 0 0 10px maroon;
+          border-width: 2px 2px 0 0;
+        }
+        50% {
+          border-color: maroon maroon maroon transparent;
+          box-shadow: 0 0 15px maroon;
+          border-width: 2px 2px 2px 0;
+        }
+        75% {
+          border-color: maroon maroon maroon maroon;
+          box-shadow: 0 0 20px maroon;
+          border-width: 2px 2px 2px 2px;
+        }
+        100% {
+          border-color: transparent transparent transparent transparent;
+          box-shadow: 0 0 0px maroon;
+          border-width: 0 0 0 0;
+        }
+      } /* CSS Animations*/
+      .hover-button {
+        font-size: 20px;
+        font-family: Arial, sans-serif;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 12px 24px;
+        display: inline-block;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 8px;
+        background-color: #600000;
+        border: 2px solid #600000;
+        transition: background-color 0.3s ease, color 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .hover-button:hover {
+        background-color: #ffffff;
+        color: #600000;
+        border-color: #600000;
+      }
+      .hover-link {
+        color: #6699ff;
+        text-decoration: none;
+        transition: color 0.3s ease, text-decoration 0.3s ease;
+      }
+
+      .hover-link:hover {
+        color: #ffffff; /* Changes color on hover */
+        text-decoration: underline; /* Adds underline on hover */
+      }
+
+      /* Responsive styles */
+      @media screen and (max-width: 600px) {
+        .column {
+          width: 100% !important;
+          display: block;
+          padding: 10px 0 !important;
+        }
+        h2 {
+          font-size: 20px !important;
+        }
+        p {
+          font-size: 14px !important;
+        }
+      }
+
+      /* Styles for radio buttons and slides */
+
+      input[type="radio"] {
+        display: none;
+      }
+
+      label {
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      label:hover {
+        background-color: #8b0000;
+      }
+
+      .slide {
+        display: none;
+        margin-top: 10px;
+      }
+
+      #slide1:checked ~ .slide1,
+      #slide2:checked ~ .slide2,
+      #slide3:checked ~ .slide3 {
+        display: block;
+      }
+    </style>
+  </head>
+  <body id="body" style="margin: 0 !important; padding: 0 !important">
+    <table
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      align="center"
+      role="presentation"
+    >
+      <tr>
+        <td align="center">
+          <!-- Inner fixed-width table (600px) -->
+          <table
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            width="600"
+            style="max-width: 100%"
+            role="presentation"
+          >
+            <!-- Logo image -->
+            <tr>
+              <td align="center" style="padding: 20px 0 20px 0">
+                <table
+                  align="center"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  role="presentation"
+                >
+                  <tr>
+                    <td align="center">
+                      <img
+                        src="https://cdn.glitch.global/d1f5e40a-3102-4b65-bdf9-9ba110f4139a/IGV%20CSUN-.png?v=1726460484618"
+                        alt="IGV CSUN Logo"
+                        width="100"
+                        height="100"
+                        style="border-radius: 50%"
+                      />
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Headline -->
+            <tr>
+              <td
+                bgcolor="#ffffff"
+                align="center"
+                style="
+                  padding: 30px 30px 30px 30px;
+                  color: #333333;
+                  font-family: Arial, sans-serif;
+                  font-size: 24px;
+                  font-weight: bold;
+                "
+              >
+                <table
+                  align="center"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  role="presentation"
+                >
+                  <tr>
+                    <td align="center">
+                      <p style="margin: 0; color: #000000">
+                        California State University, Northridge’s Intelligent
+                        Ground Vehicle <span style="color: #921919">(IGV)</span>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Hero Image -->
+            <tr>
+              <td align="center" style="padding: 0 0 10px 0">
+                <table
+                  align="center"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  role="presentation"
+                  style="position: relative; width: 600px"
+                >
+                  <tr>
+                    <td align="center" style="position: relative">
+                      <!-- Image -->
+                      <img
+                        src="https://cdn.glitch.global/d1f5e40a-3102-4b65-bdf9-9ba110f4139a/Banner.png?v=1726504087870"
+                        width="600"
+                        height="50"
+                        style="
+                          display: block;
+                          max-width: 100%;
+                          height: auto;
+                          border-radius: 8px;
+                        "
+                        alt="Building and testing the vehicle in order to compete against other Universities in the annual igvc"
+                      />
+
+                      <!-- Glowing Animated Border -->
+                      <div
+                        style="
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          width: 100%;
+                          height: 100%;
+                          border-radius: 8px;
+                          box-sizing: border-box;
+                          border: 2px solid transparent;
+                          animation: glow-border 5s linear infinite;
+                        "
+                      ></div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <!-- Body copy -->
+            <tr>
+              <td
+                align="left"
+                style="
+                  padding: 20px 30px 20px 30px;
+                  color: #6000000;
+                  font-family: Arial, sans-serif;
+                  font-size: 18px;
+                  line-height: 25px;
+                  background-color: #ffffff;
+                "
+              >
+                <table
+                  align="left"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  role="presentation"
+                >
+                  <tr>
+                    <td style="padding: 20px; line-height: 24px">
+                      <h1 style="color: #000000">About Us</h1>
+                      <p style="margin: 0">
+                        The California State University, Northridge (CSUN)
+                        College of Engineering and Computer Science is dedicated
+                        to providing a broad, rigorous, application-oriented,
+                        and contemporary understanding of engineering. This is
+                        why they offer the engineering students at CSUN the
+                        invaluable opportunity to participate in the Intelligent
+                        Ground Vehicle Competition (IGVC) as an option to
+                        fulfill their senior design project requirements.
+                        Participation in the program will enhance the knowledge,
+                        creativity, and imagination of the team members and
+                        prepare them for successful careers and lifelong
+                        learning. The CSUN Intelligent Ground Vehicle (IGV) Team
+                        requests your investment in an educational program which
+                        offers a design experience that is at the very cutting
+                        edge of engineering education.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Background Image Section -->
+                <table
+                  align="left"
+                  border="0"
+                  cellpadding="0"
+                  cellspacing="0"
+                  role="presentation"
+                >
+                  <tr>
+                    <td style="padding: 20px; line-height: 24px">
+                      <div
+                        style="
+                          position: relative;
+                          background-image: url('https://cdn.glitch.global/d1f5e40a-3102-4b65-bdf9-9ba110f4139a/terry-vlisidis-WsEbnsnKbUE-unsplash.jpg?v=1726511242806');
+                          background-size: cover;
+                          background-position: center;
+                          padding: 20px;
+                          margin: 20px 0 0 0;
+                        "
+                      >
+                        <!-- Overlay to simulate blur -->
+                        <div
+                          style="
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background-color: rgba(0, 0, 0, 0.3);
+                            backdrop-filter: blur(2px);
+                          "
+                        ></div>
+                        <p
+                          style="
+                            position: relative;
+                            color: #ffffff;
+                            font-size: 18px;
+                            line-height: 25px;
+                            z-index: 1;
+                            text-shadow: 1px 1px 2px #000000;
+                          "
+                        >
+                          The purpose of the Intelligent Ground Vehicle
+                          Competition (IGVC) is to design and assemble a fully
+                          autonomous unmanned ground robotic vehicle that can
+                          negotiate a course with obstacles and perform tasks
+                          assigned to it during the competition. The goals of
+                          this competition are to advance the state-of-the-art
+                          of intelligent ground vehicles (IGVs) by challenging a
+                          new generation of engineers to perform realistic
+                          missions on the competition course and to foster ties
+                          between young engineers and the organizations
+                          developing IGV technologies.
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <!-- Three Column Radio Buttons Section -->
+                <tr>
+                  <td
+                    align="left"
+                    style="
+                      padding: 10px 30px;
+                      color: #000000;
+                      font-family: Arial, sans-serif;
+                      font-size: 18px;
+                      line-height: 25px;
+                      background-color: #ffffff;
+                    "
+                  >
+                    <table
+                      align="left"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                    >
+                      <tr>
+                        <td style="padding: 10px; line-height: 24px">
+                          <div style="margin: 10px 0; text-align: center">
+                            <input
+                              type="radio"
+                              id="slide1"
+                              name="history"
+                              checked
+                            />
+                            <label
+                              for="slide1"
+                              class="radio-btn"
+                              style="
+                                border: 1px solid #600000;
+                                padding: 10px;
+                                margin-right: 10px;
+                                background-color: #600000;
+                                color: white;
+                              "
+                              >2012</label
+                            >
+
+                            <input type="radio" id="slide2" name="history" />
+                            <label
+                              for="slide2"
+                              class="radio-btn"
+                              style="
+                                border: 1px solid #600000;
+                                padding: 10px;
+                                margin-right: 10px;
+                                background-color: #600000;
+                                color: white;
+                              "
+                              >2024</label
+                            >
+
+                            <input type="radio" id="slide3" name="history" />
+                            <label
+                              for="slide3"
+                              class="radio-btn"
+                              style="
+                                border: 1px solid #600000;
+                                padding: 10px;
+                                background-color: #600000;
+                                color: white;
+                              "
+                              >Pursuing</label
+                            >
+
+                            <div
+                              class="slide slide1"
+                              style="text-align: left; margin-top: 10px"
+                            >
+                              <p>
+                                We won the IGVC competition in 2012! Our robot,
+                                Red Raven 2.0, secured the overall championship
+                                at the Intelligent Ground Vehicle Competition,
+                                while our second robot, LINJA, earned third
+                                place in the design competition. This success
+                                reflects the team's commitment to excellence and
+                                innovation in engineering.
+                              </p>
+                            </div>
+
+                            <div
+                              class="slide slide2"
+                              style="text-align: left; margin-top: 10px"
+                            >
+                              <p>
+                                We ranked 7th in the IGVC competition in 2024!
+                                Dr. Vidya Nandikolla and her team of students
+                                made a remarkable comeback after a decade
+                                without prior design information, standing out
+                                among 29 universities from Egypt, Canada, India,
+                                and the USA. This achievement highlights the
+                                team's dedication to excellence in engineering
+                                and innovation.
+                              </p>
+                            </div>
+
+                            <div
+                              class="slide slide3"
+                              style="text-align: left; margin-top: 10px"
+                            >
+                              <p>
+                                We are also pursuing new advancements in
+                                intelligent ground vehicles, focusing on
+                                cutting-edge technologies and methodologies to
+                                prepare our team for future challenges and
+                                competitions. We will be participating in the
+                                2025 IGVC, so stay tuned for more updates!
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <!-- Button (Used :hover)-->
+                <tr>
+                  <td align="center" style="padding: 30px 30px 30px 30px">
+                    <table
+                      align="center"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                    >
+                      <tr>
+                        <td align="center">
+                          <a
+                            href="https://robonation.org/programs/igvc/"
+                            target="_blank"
+                            class="hover-button"
+                          >
+                            About IGVC
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <!-- Two-column component after the button -->
+                <tr>
+                  <td
+                    align="center"
+                    style="
+                      padding: 30px 30px 30px 30px;
+                      background-color: #ffffff;
+                    "
+                  >
+                    <!-- First fluid table as main container -->
+                    <table
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      width="100%"
+                      role="presentation"
+                    >
+                      <tr>
+                        <td align="center">
+                          <!-- Second fixed-width table (600px) -->
+                          <table
+                            border="0"
+                            cellpadding="0"
+                            cellspacing="0"
+                            width="600"
+                            style="max-width: 100%"
+                            role="presentation"
+                          >
+                            <tr>
+                              <td align="center">
+                                <!-- Third fluid table for two columns -->
+                                <table
+                                  border="0"
+                                  cellpadding="0"
+                                  cellspacing="0"
+                                  width="100%"
+                                  role="presentation"
+                                >
+                                  <tr>
+                                    <!-- Left Column (48% width) -->
+                                    <td
+                                      align="left"
+                                      valign="top"
+                                      width="48%"
+                                      style="padding: 10px"
+                                      class="column"
+                                    >
+                                      <table
+                                        border="0"
+                                        cellpadding="0"
+                                        cellspacing="0"
+                                        width="100%"
+                                        role="presentation"
+                                      >
+                                        <tr>
+                                          <td
+                                            align="left"
+                                            style="
+                                              font-family: Arial, sans-serif;
+                                              font-size: 16px;
+                                              color: #333333;
+                                            "
+                                          >
+                                            <img
+                                              src="https://cdn.glitch.global/ac738d93-5928-48dc-92b0-5b79e270b01a/fundraiser-flyer.webp?v=1727119252980"
+                                              width="100%"
+                                              height="auto"
+                                              alt="Dave's Restaurant Flyer"
+                                              style="
+                                                display: block;
+                                                border: 0px;
+                                              "
+                                            />
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </td>
+
+                                    <!-- Right Column (48% width) -->
+                                    <td
+                                      align="left"
+                                      valign="top"
+                                      width="48%"
+                                      style="padding: 10px"
+                                      class="column"
+                                    >
+                                      <table
+                                        border="0"
+                                        cellpadding="0"
+                                        cellspacing="0"
+                                        width="100%"
+                                        role="presentation"
+                                      >
+                                        <tr>
+                                          <td
+                                            align="left"
+                                            style="
+                                              font-family: Arial, sans-serif;
+                                              font-size: 16px;
+                                              color: #333333;
+                                            "
+                                          >
+                                            <h2
+                                              style="margin: 0; color: #000000"
+                                            >
+                                              Join Us for a Fundraiser at Dave's
+                                            </h2>
+                                            <p style="margin: 10px 0 0 0">
+                                              We’re excited to invite you to our
+                                              fundraiser at Dave’s Restaurant!
+                                              Enjoy great food while supporting
+                                              our team. A portion of the
+                                              proceeds will go towards helping
+                                              us prepare for the upcoming
+                                              Intelligent Ground Vehicle
+                                              Competition.
+                                            </p>
+                                            <p style="margin: 10px 0 0 0">
+                                              <strong>Date:</strong> October 22,
+                                              2024<br />
+                                              <strong>Time:</strong> 4:00 PM - 8
+                                              :00 PM<br />
+                                              <strong>Location:</strong> 9205
+                                              Reseda Blvd, Northridge, CA 91324
+                                            </p>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </table>
+                                <!-- End of the two-column component -->
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Footer information -->
+                <tr>
+                  <td
+                    bgcolor="#921919"
+                    align="center"
+                    style="
+                      padding: 20px 30px 20px 30px;
+                      color: #999999;
+                      font-family: Arial, sans-serif;
+                      font-size: 12px;
+                      line-height: 18px;
+                    "
+                  >
+                    <table
+                      align="center"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      role="presentation"
+                    >
+                      <tr>
+                        <td align="center">
+                          <p style="margin: 0">
+                            You are receiving this email because you opted-in to
+                            receive updates from IGV team 2024.
+                          </p>
+                          <p style="margin: 0">
+                            <a href="" target="_blank" class="hover-link"
+                              >Unsubscribe</a
+                            >
+                            |
+                            <a href="" target="_blank" class="hover-link"
+                              >Join Our Team!</a
+                            >
+                          </p>
+                          <p style="margin: 0">
+                            18111 Nordhoff St, Northridge, CA 91330
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
