@@ -129,7 +129,7 @@
       }
 
       .hover-link:hover {
-        color: #ffffff; /* Changes color on hover */
+        color: #ffffff; /* on hover */
         text-decoration: underline; /* Adds underline on hover */
       }
 
@@ -149,7 +149,27 @@
       }
 
       /* Styles for radio buttons and slides */
+      /* Hide all slides by default */
+      .slide {
+        display: none;
+      }
 
+      /* Show the first slide when the first radio button is checked */
+      #slide1:checked ~ .slide1 {
+        display: block;
+      }
+
+      /* Show the second slide when the second radio button is checked */
+      #slide2:checked ~ .slide2 {
+        display: block;
+      }
+
+      /* Show the third slide when the third radio button is checked */
+      #slide3:checked ~ .slide3 {
+        display: block;
+      }
+
+      /* Style for the radio buttons  */
       input[type="radio"] {
         display: none;
       }
@@ -519,6 +539,7 @@
                     </table>
                   </td>
                 </tr>
+
                 <!-- Button (Used :hover)-->
                 <tr>
                   <td align="center" style="padding: 30px 30px 30px 30px">
@@ -687,7 +708,7 @@
                 <!-- Footer information -->
                 <tr>
                   <td
-                    bgcolor="#921919"
+                    bgcolor="#600000"
                     align="center"
                     style="
                       padding: 20px 30px 20px 30px;
