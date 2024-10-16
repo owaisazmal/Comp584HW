@@ -1,58 +1,126 @@
+/* Basic resets and settings */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+a {
+    color: #2772B0;
+}
+.wrapper {
+    width: 97%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+}
+div img {
+    width: 100%;
+    height: auto;
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <center>
-    <pre style="background-color: #222; color: #eee;">
-    
-    <span style="color: #4FED4F;">[Web@God <span style="color: #DADADA;">email</span>]$</span> send mail                
-    Generating mail...                                <span>
-      <span id="title">WEB GOD</span>     
-      ████████─███████─██─████████─███████ █████████  
-                     ┗─┫  ┏┛ ┏─┛         ┗──┛         
-       █▀▀ █▀█ █▀▄ █▀▀ ┗─▄█▄─┛█▀▄ █▀▀ █▀ █─█▀▀ █▄ █   
-       █▄▄ █▄█─█▄▀ ██▄    █  ┏█▄▀ ██▄ ▄█ █ █▄█─█ ▀█   </span>
-        ┗───┛  ┗─┳─┳┛     │  │     ┗──╋──┛            
-                 ┗─┻─────┓│┏─┻────────┛               
-            ┏────────────┻┻┻─────────────────┓        
-     ┏──────┫    <b>Let’s make things happen!</b>   ┣──────┓ 
-     │      ┗────────────────────────────────┛      │ 
-     ┣┳ Available for long and short term projects  │ 
-     │┗ Ready to join,lead or organize a team.      │ 
-     │                                              │ 
-     ┣─ Over 4 years of experience in ─┓            │ 
-     │ ┏───────────────────────────────┛            │ 
-     │ ┣ Frontend + Backend Development             │ 
-     │ ┣ Visual Design | UI/UX | 3D                 │ 
-     │ ┣ Growth Hacking | Market Research           │ 
-     │ ┣ Data mining | Web Scraping                 │ 
-     │ ┣ Linux Administration | Automation          │ 
-     │ │                                            │ 
-     │ ┣ Fluent in English and  Hindi               │ 
-     │ ┗ based  in  India                           │ 
-     │                                              │ 
-     ┣─ Contact ───────────────────────┓            │ 
-     │ ┏───────────────────────────────┛            │ 
-     │ ┣─── Website [<b><a href="https://webgod">www.WEBGOD.art</a></b>]                │ 
-     │ ┣────── Mail [<b><a href="mailto:banana@prim4t.art">webgod@gmail.com</a></b>]              │ 
-     │ ┗──── Book a [<b><a href="meeting.html">Meeting</a></b>]                       │ 
-     ┗───┓                                          │ 
-         │  ┏────────────────────────────────┓  ┏───┛ 
-         ┗──┫ █████████████████████████▓▒░░░ ┣──┛     
-            ┗────────────────────────────────┛        
-    Sending...                                        
-    Mail delivered ✔                                  
-    <span style="color: #4FED4F;">[Web@God <span style="color: #DADADA;">email</span>]$</span> <span class="blinking-cursor">█</span>                        
-                                                      
-    
-    </pre>
-    </center>
-</body>
-</html>
+/* Grid settings */
+.row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Responsive grid adjustments */
+@media only screen and (min-width: 480px) {
+    .col-1, .col-2 {
+        grid-column: span 6;
+    }
+    .col-3, .col-4, .col-5, .col-7, .col-8 {
+        grid-column: span 12;
+    }
+    .col-6 {
+        grid-column: span 6;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .row {
+        grid-template-columns: repeat(12, 1fr); /* 12-column layout */
+    }
+    .col-1 {
+        grid-column: span 3;
+    }
+    .col-2, .col-5 {
+        grid-column: span 6;
+    }
+    .col-3 {
+        grid-column: span 9;
+    }
+    .col-4 {
+        grid-column: span 12;
+    }
+    .col-6 {
+        grid-column: span 2; /* tighter spacing for special items */
+    }
+    .col-7 {
+        grid-column: span 3;
+    }
+    .col-8 {
+        grid-column: span 3;
+    }
+}
+
+/* Grid additional properties */
+.row {
+    grid-auto-rows: minmax(100px, auto); /* Ensures all rows have a minimum height */
+    justify-items: center; /* Centers items horizontally */
+    align-items: start; /* Aligns items to the start vertically */
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    background-color: #666;
+    transform: translateY(0);
+}
+
+.card-bg, .title-bg {
+    background-color: #000;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.title-bg {
+    margin: 1rem auto;
+    max-width: 50%;
+    text-align: center;
+}
+
+.col-6:hover {
+    background-color: #444;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
