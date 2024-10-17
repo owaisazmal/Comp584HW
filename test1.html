@@ -1,126 +1,597 @@
-/* Basic resets and settings */
+/* Border box declaration */
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-*, *:before, *:after {
-    box-sizing: inherit;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
+  font-family: Arial, Geneva, sans-serif;
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
 }
+
 a {
-    color: #2772B0;
+  color: #2772b0;
 }
+
 .wrapper {
-    width: 97%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
+  width: 100%;
+  margin: 0 auto;
+  float: none;
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
 }
+
 div img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: 225px;
+  object-fit: cover;
 }
 
-/* Grid settings */
+/* Grid system - Mobile first! */
 .row {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  margin: 10px;
 }
 
-/* Responsive grid adjustments */
+.download-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  background-color: #28a745;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.download-btn:active {
+  background-color: #1e7e34;
+  transform: translateY(0);
+}
+
+/* Column style using grid */
+[class*="col-"] {
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+}
+
+.col-1:hover,
+.col-4:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  background: linear-gradient(
+    180deg,
+    rgba(148, 187, 233, 1) 0%,
+    rgba(238, 174, 202, 1) 100%
+  );
+}
+
+/* Tablet landscape (min-width: 480px) */
 @media only screen and (min-width: 480px) {
-    .col-1, .col-2 {
-        grid-column: span 6;
-    }
-    .col-3, .col-4, .col-5, .col-7, .col-8 {
-        grid-column: span 12;
-    }
-    .col-6 {
-        grid-column: span 6;
-    }
+  #corvette-card {
+    grid-column: span 4;
+  }
+
+  .col-3,
+  .col-4 {
+    grid-column: span 4;
+  }
+
+  .row { 
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+
+  .jesko {
+    order: -1;
+  }
+
+  .row-6 {
+    grid-template-columns: 1fr; /* Single column */
+  }
+
+  .row-6 > .col-1:nth-child(4) {
+    order: -1;
+  }
 }
 
+/* Desktop screen (min-width: 768px) */
 @media only screen and (min-width: 768px) {
-    .row {
-        grid-template-columns: repeat(12, 1fr); /* 12-column layout */
-    }
-    .col-1 {
-        grid-column: span 3;
-    }
-    .col-2, .col-5 {
-        grid-column: span 6;
-    }
-    .col-3 {
-        grid-column: span 9;
-    }
-    .col-4 {
-        grid-column: span 12;
-    }
-    .col-6 {
-        grid-column: span 2; /* tighter spacing for special items */
-    }
-    .col-7 {
-        grid-column: span 3;
-    }
-    .col-8 {
-        grid-column: span 3;
-    }
+  .row {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+
+  #corvette-card {
+    grid-column: span 1;
+  }
+
+  .jesko {
+    order: 0;
+  }
+
+  .col-1 {
+    grid-column: span 1;
+  }
+
+  .col-2 {
+    grid-column: span 2;
+  }
+
+  .col-3 {
+    grid-column: span 3;
+  }
+
+  .col-4 {
+    grid-column: span 4;
+  }
+
+  /* Special layout for row 6 */
+  .row-6 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    grid-gap: 10px;
+    grid-template-areas:
+      "ferrari lambo lambo lambo"
+      "porsche porsche porsche ktm";
+  }
+
+  /* Apply the grid-area names */
+  .row-6 > .col-1:nth-child(1) {
+    grid-area: ferrari;
+  }
+
+  .row-6 > .col-1:nth-child(2) {
+    grid-area: lambo;
+  }
+
+  .row-6 > .col-1:nth-child(3) {
+    grid-area: porsche;
+  }
+
+  .row-6 > .col-1:nth-child(4) {
+    grid-area: ktm;
+  }
 }
 
-/* Grid additional properties */
-.row {
-    grid-auto-rows: minmax(100px, auto); /* Ensures all rows have a minimum height */
-    justify-items: center; /* Centers items horizontally */
-    align-items: start; /* Aligns items to the start vertically */
-}
 
-.btn {
-    display: inline-block;
-    padding: 6px 12px;
-    margin: 5px 0;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #000;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cars and Bikes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-.btn:hover {
-    background-color: #333;
-    transform: translateY(-2px);
-}
+  <body>
+    <div class="wrapper">
+      <!-- row 1, 4 individual boxes -->
+      <div class="row">
+        <article
+          class="col-1"
+          onclick="window.open('https://www.ford.com/cars/mustang/', '_blank')"
+        >
+          <h3>Mustang</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/andre-tan-umd7qYV0uvM-unsplash.jpg?v=1728414022454"
+            alt="Mustang car."
+          />
+          <p>
+            The Ford Mustang is a series of American automobiles manufactured by
+            Ford. It is one of the most popular sports cars in history.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/umd7qYV0uvM/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzI4NTEzNzA5fA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+        <article
+          class="col-1"
+          onclick="window.open('https://www.ducati.com/us/en/bikes/panigale', '_blank')"
+        >
+          <h3>Ducati V4</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/stephan-louis-inugcX8tDcU-unsplash.jpg?v=1728414169799"
+            alt="Ducati bike"
+          />
+          <p>
+            Ducati is known for its high-performance motorcycles. Sleek design
+            and speed make it a popular choice for riders around the world.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/inugcX8tDcU/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8ZHVjYXRpJTIwdjR8ZW58MHx8fHwxNzI4NDE0MDgwfDA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+        <article
+          class="col-1"
+          onclick="window.open('https://www.chevrolet.ca/en/performance/camaro', '_blank')"
+        >
+          <h3>Camaro</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/tyler-clemmensen-P1KQXcSME8Q-unsplash.jpg?v=1728414310607"
+            alt="Camaro car"
+          />
+          <p>
+            The Chevrolet Camaro is a mid-size American automobile designed as a
+            direct competitor to the Ford Mustang.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/P1KQXcSME8Q/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTZ8fENhbWFyb3xlbnwwfHx8fDE3Mjg0MTQyMDB8MA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+        <article
+          class="col-1"
+          onclick="window.open('https://www.kawasaki.com/en-us/motorcycle/z/supernaked/z900', '_blank')"
+        >
+          <h3>Kawasaki Z900</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/abhijeet-barak-7eopTZ8EV9Y-unsplash.jpg?v=1728414438743"
+            alt="Kawasaki Ninja bike"
+          />
+          <p>
+            The Kawasaki Z is a series of sport motorcycles known for their
+            speed, agility, and excellent performance on the road.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/7eopTZ8EV9Y/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8a2F3YXNha2klMjB6OTAwfGVufDB8fHx8MTcyODQzODU2Nnww&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+      </div>
 
-.btn:active {
-    background-color: #666;
-    transform: translateY(0);
-}
+      <!-- row 2, 2 boxes spanning 2 columns -->
+      <div class="row">
+        <article
+          class="col-2"
+          onclick="window.open('https://www.audiusa.com/us/web/en/models/r8/r8-heritage/2024/overview.html', '_blank')"
+        >
+          <h3>Audi R8</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/abdullah-malik-SNBHRxfOjSI-unsplash.jpg?v=1728414698820"
+            alt="Audi R8 car"
+          />
+          <p>
+            The Audi R8 is a luxury sports car known for its powerful engine and
+            exceptional handling. It's a perfect blend of performance and style.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/SNBHRxfOjSI/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MzB8fGF1ZGklMjByOHxlbnwwfHx8fDE3Mjg1MTM1MzZ8MA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+        <article
+          class="col-2"
+          onclick="window.open('https://www.harley-davidson.com/', '_blank')"
+        >
+          <h3>Harley Davidson</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/harley-davidson-jd55yqwm6lw-unsplash.jpg?v=1728414968959"
+            alt="Harley Davidson bike"
+          />
+          <p>
+            Harley Davidson is one of the most iconic motorcycle brands in the
+            world, known for its cruiser bikes that embody freedom and
+            adventure.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/jd55yqwm6lw/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzI4NTEzNzc5fA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+      </div>
 
-.card-bg, .title-bg {
-    background-color: #000;
-    color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.title-bg {
-    margin: 1rem auto;
-    max-width: 50%;
-    text-align: center;
-}
+      <!-- row 3: narrow left column, wide right/content column -->
+      <div class="row">
+        <article
+          id="corvette-card"
+          class="col-1"
+          onclick="window.open(' https://www.chevrolet.com/performance/corvette', '_blank')"
+        >
+          <h3>Corvette</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/haseeb-modi-gIrtjU6eUm0-unsplash.jpg?v=1728415086635"
+            alt="Corvette car"
+          />
+          <p>
+            The Chevrolet Corvette, colloquially known as the 'Vette, is a
+            symbol of American automotive engineering, offering both speed and
+            luxury.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/gIrtjU6eUm0/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTA0fHxjb3J2ZXR0ZSUyMGM4fGVufDB8fHx8MTcyODQxNTA2MHww&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+        <article
+          onclick="window.open('https://www.bmwmotorcycles.com/en/models/sport/s1000rr.html', '_blank')"
+          class="col-3"
+        >
+          <h3>BMW S1000RR</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/bjorn-magnus-kristiansen-_TWoPZowPKc-unsplash.jpg?v=1728513868352"
+            alt="BMW S1000RR bike"
+          />
+          <p>
+            The BMW S1000RR is one of the most powerful superbikes on the
+            market. It combines performance, precision, and style in a single
+            machine.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/_TWoPZowPKc/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTl8fEJNVyUyMHMxMDAwcnJ8ZW58MHx8fHwxNzI4NTEzODMyfDA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+      </div>
 
-.col-6:hover {
-    background-color: #444;
-    color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-}
+      <!-- row 4: one column wide -->
+      <div class="row">
+        <article
+          class="col-4"
+          onclick="window.open('https://www.tesla.com/models', '_blank')"
+        >
+          <h3>Tesla Model S</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/dmitry-novikov-mN4X06dXpcg-unsplash.jpg?v=1728415371686"
+            alt="Tesla Model S car"
+          />
+          <p>
+            The Tesla Model S is an all-electric car known for its incredible
+            speed, long-range battery, and cutting-edge technology.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/mN4X06dXpcg/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTZ8fFRlc2xhJTIwbW9kZWwlMjBTfGVufDB8fHx8MTcyODQxNTM0Nnww&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+      </div>
+
+      <!-- row 5, 1-2-1 individual boxes -->
+      <div class="row">
+        <article
+          class="col-1"
+          onclick="window.open('https://www.ferrari.com/en-EN/auto/488-gtb', '_blank')"
+        >
+          <h3>Ferrari 488</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/michael-stevanus-hartono-IIISRmsQQjM-unsplash.jpg?v=1728415561457"
+            alt="Ferrari 488 car"
+          />
+          <p>
+            The Ferrari 488 is an exotic sports car that offers stunning
+            performance and exceptional Italian design.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/IIISRmsQQjM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8ZmVycmFyaSUyMDQ4OHxlbnwwfHx8fDE3Mjg0MTUzNzh8MA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+        <article
+          onclick="window.open('https://www.koenigsegg.com/model/jesko-attack', '_blank')"
+          class="col-2 jesko"
+        >
+          <h3>Koenigsegg Jesko</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/imil-salyakhutdinov-v2iGdBoCBGE-unsplash.jpg?v=1728514104124"
+            alt="Koenigsegg Jesko Attack"
+          />
+          <p>
+            The Koenigsegg Jesko Attack is a high-performance hypercar designed
+            for track dominance, boasting cutting-edge aerodynamics, a powerful
+            V8 engine, and advanced engineering for extreme speed and precision.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/v2iGdBoCBGE/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NXx8a29lbmlnc2VnZyUyMGplc2tvfGVufDB8fHx8MTcyODUxMzk2OXww&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+        <article
+          onclick="window.open('https://www.suzukicycles.com/sportbike/2023/gsx-r1000', '_blank')"
+          class="col-1"
+        >
+          <h3>Suzuki GSX-R1000</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/alexis-amz-da-cruz-ibXXppjZuK4-unsplash.jpg?v=1728415567530"
+            alt="Suzuki GSX-R1000 bike"
+          />
+          <p>
+            The Suzuki GSX-R1000 is a performance-oriented bike known for its
+            raw power and agility on both the track and the streets.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/ibXXppjZuK4/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzI4NTE0MjEzfA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+      </div>
+
+      <!-- row 6: unique layout -->
+      <div class="row row-6">
+        <article
+          onclick="window.open('https://www.ferrari.com/en-EN/auto/812-superfast', '_blank')"
+          class="col-1"
+        >
+          <h3>Ferrari 812 Superfast</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/nate-dieckhaus-aXJz5TP0IU4-unsplash.jpg?v=1728514564934"
+            alt="Ferrari 812 Superfast car"
+          />
+          <p>
+            The Ferrari 812 Superfast is a front-engine V12 supercar that
+            combines stunning performance with iconic Italian design, delivering
+            one of the most exhilarating driving experiences.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/aXJz5TP0IU4/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MXx8ZmVycmFyaSUyMDgxMnxlbnwwfHx8fDE3Mjg0MDY3MjN8MA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+
+        <article
+          class="col-1"
+          onclick="window.open('https://www.lamborghini.com/en-en/models/aventador', '_blank')"
+        >
+          <h3>Lamborghini Aventador</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/bailey-mahon-JMpdblrHTrQ-unsplash.jpg?v=1728415555097"
+            alt="Lamborghini Aventador car"
+          />
+          <p>
+            The Lamborghini Aventador is a high-performance supercar known for
+            its powerful V12 engine and aggressive design.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/JMpdblrHTrQ/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8bGFtYm9yZ2hpbmklMjBhdmVudGFkb3J8ZW58MHx8fHwxNzI4Mzk0NDczfDA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+        <article
+          class="col-1"
+          onclick="window.open('https://www.porsche.com/usa/models/911/911-turbo-models/911-turbo-s-cabriolet/', '_blank')"
+        >
+          <h3>Porsche 911</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/bradikan-oEfKcvuSHMs-unsplash.jpg?v=1728527950444"
+            alt="Porsche 911 car"
+          />
+          <p>
+            The Porsche 911 is a legendary sports car, revered for its timeless
+            design and impressive engineering.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/oEfKcvuSHMs/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NTN8fHBvcnNjaGUlMjA5MTF8ZW58MHx8fHwxNzI4NTI3OTEzfDA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+        <article
+          class="col-1"
+          onclick="window.open('https://www.ktm.com/en-nl/models/naked-bike/2023-ktm-1290-superdukerevo.html', '_blank')"
+        >
+          <h3>KTM Duke 1290</h3>
+          <img
+            src="https://cdn.glitch.global/03e375e1-8dc3-419b-b745-f40b4953ea0e/eroz-kP7iKeuSIv8-unsplash%20(1).jpg?v=1728527856792"
+            alt="KTM Duke 1290 bike"
+          />
+          <p>
+            The KTM Duke 1290 is a high-performance naked bike, known for its
+            raw power, advanced technology, and unparalleled agility on the
+            road.
+          </p>
+          <p>
+            <a
+              href="https://unsplash.com/photos/kP7iKeuSIv8/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8M3x8a3RtJTIwZHVrZSUyMDEyOTB8ZW58MHx8fHwxNzI4NDYxMzI0fDA&force=true"
+              target="_blank"
+              class="download-btn"
+              onclick="event.stopPropagation()"
+              >Download Now! &gt;&gt;</a
+            >
+          </p>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>
