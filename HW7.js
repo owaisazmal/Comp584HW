@@ -1,25 +1,14 @@
-async function checkHalalStatus() {
-    const productInput = document.getElementById('productInput').value.trim();
+async function getHighProteinFood() {
     const resultElement = document.getElementById('result');
+    resultElement.textContent = "Searching for high-protein food...";
 
-    if (!productInput) {
-        resultElement.textContent = "Please enter a product name.";
-        resultElement.style.color = 'red';
-        return;
-    }
-
-    // Direct keyword check for non-halal items in the product name
-    const nonHalalKeywords = /pork|bacon|ham|alcohol|wine|whiskey|beer|rum|brandy|vodka|gin|sausage|mead|schnapps|bourbon|cocktail|liquor|amaretto|kahlua|tequila|cognac/i;
-    if (nonHalalKeywords.test(productInput)) {
-        resultElement.textContent = `${productInput} is not Halal due to its name containing a non-halal term.`;
-        resultElement.style.color = 'red';
-        return;
-    }
+    const highProteinQueries = ["chicken", "eggs", "tofu", "salmon", "lentils", "beef"];
+    const randomQuery = highProteinQueries[Math.floor(Math.random() * highProteinQueries.length)];
 
     try {
-        const apiKey = 'htuolvzS1nrPStYFSg1RQg==xU496tJxbGDGq1Ww'; // Replace with your actual API key
-        const apiUrl = `https://api.api-ninjas.com/v1/recipe?query=${encodeURIComponent(productInput)}`;
-        
+        const apiKey = 'htuolvzS1nrPStYFSg1RQg==xU496tJxbGDGq1Ww';
+        const apiUrl = `https://api.api-ninjas.com/v1/recipe?query=${encodeURIComponent(randomQuery)}`;
+
         const response = await fetch(apiUrl, {
             headers: { 'X-Api-Key': apiKey }
         });
@@ -29,35 +18,43 @@ async function checkHalalStatus() {
         }
 
         const data = await response.json();
-
         if (data.length === 0) {
-            resultElement.textContent = `No information found for "${productInput}".`;
-            resultElement.style.color = 'orange';
+            resultElement.textContent = "No high-protein food found.";
             return;
         }
 
+        // Display the first recipe
         const recipe = data[0];
-        const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients.join(', ') : null;
+        const ingredients = Array.isArray(recipe.ingredients) 
+            ? recipe.ingredients.join(', ') 
+            : recipe.ingredients || "Ingredients not listed";
 
-        if (!ingredients) {
-            resultElement.textContent = `Ingredients information for "${productInput}" is not available.`;
-            resultElement.style.color = 'orange';
-            return;
-        }
-
-        // Expanded non-halal ingredient check
-        const isHalal = !nonHalalKeywords.test(ingredients);
-
-        if (isHalal) {
-            resultElement.textContent = `${productInput} is likely Halal. Ingredients: ${ingredients}`;
-            resultElement.style.color = 'green';
-        } else {
-            resultElement.textContent = `${productInput} is not Halal. Ingredients: ${ingredients}`;
-            resultElement.style.color = 'red';
-        }
+        resultElement.innerHTML = `
+            <h2>${recipe.title}</h2>
+            <p><strong>Ingredients:</strong> ${ingredients}</p>
+            <p><strong>Instructions:</strong> ${recipe.instructions}</p>
+        `;
     } catch (error) {
         resultElement.textContent = "Error fetching data. Please try again later.";
-        resultElement.style.color = 'red';
         console.error("Error:", error);
     }
 }
+// Wait for the page to load and then animate the button
+window.onload = () => {
+    // Initial animation for the button to scale in slightly when the page loads
+    gsap.from("button", {
+        duration: 1,
+        scale: 0.8,
+        ease: "elastic.out(1, 0.3)"
+    });
+
+    // Hover animation for the button to scale up slightly on hover
+    const button = document.querySelector("button");
+    button.addEventListener("mouseenter", () => {
+        gsap.to(button, { scale: 1.05, duration: 0.2 });
+    });
+
+    button.addEventListener("mouseleave", () => {
+        gsap.to(button, { scale: 1, duration: 0.2 });
+    });
+};
