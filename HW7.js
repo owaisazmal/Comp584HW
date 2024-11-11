@@ -39,16 +39,14 @@ async function getHighProteinFood() {
         console.error("Error:", error);
     }
 }
-// Wait for the page to load and then animate the button
 window.onload = () => {
-    // Initial animation for the button to scale in slightly when the page loads
+    // Animate the button (existing code)
     gsap.from("button", {
         duration: 1,
         scale: 0.8,
         ease: "elastic.out(1, 0.3)"
     });
 
-    // Hover animation for the button to scale up slightly on hover
     const button = document.querySelector("button");
     button.addEventListener("mouseenter", () => {
         gsap.to(button, { scale: 1.05, duration: 0.2 });
@@ -57,4 +55,23 @@ window.onload = () => {
     button.addEventListener("mouseleave", () => {
         gsap.to(button, { scale: 1, duration: 0.2 });
     });
+
+    // New typewriter and color fade-in animation for "High Protein Food Finder"
+    const titleText = document.querySelector("h1");
+    const text = titleText.innerText;
+    titleText.innerText = ""; // Clear text for typewriter effect
+    
+    gsap.to(titleText, {
+        text: text,
+        duration: 2,
+        ease: "power2.inOut",
+        delay: 0.5,
+    });
+    
+    gsap.fromTo(titleText, 
+        { color: "#ff65a3" }, // Start color
+        { color: "#333", duration: 2, delay: 0.5, ease: "power2.inOut" } // End color
+    );
 };
+
+
