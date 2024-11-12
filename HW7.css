@@ -5,11 +5,13 @@
 }
 
 body {
+    /* Learned from: https://redstapler.co/css-animated-gradient-background/ */
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    /* A colorful gradient background with five color stops */
     background: linear-gradient(135deg, #ff7eb9, #ff65a3, #7afcff, #feff9c, #fff740);
     background-size: 300% 300%;
     /* Animates the gradient over a 10-second loop, creating a gentle shifting effect */
