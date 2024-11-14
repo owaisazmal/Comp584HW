@@ -1,102 +1,91 @@
-// Select elements
-const display = document.getElementById('display');
-const buttons = document.querySelectorAll('.button');
+//JS Library used: gsap.com
+//API used: api-ninjas.com
+async function getHighProteinFood() {
+  const resultElement = document.getElementById('result');
+  resultElement.textContent = "Searching for high-protein food...";
+  // List of high-protein foods as possible search queries for variety
+  const highProteinQueries = ["chicken", "eggs", "tofu", "salmon", "lentils", "beef"];
+  const randomQuery = highProteinQueries[Math.floor(Math.random() * highProteinQueries.length)]; // Pick a random food item from the list to use as the search term
+  try {
+      // Used api-ninjas.com recipe API with an API key for authentication and sends a request with the selected ingredient as a query.
+      const apiKey = 'htuolvzS1nrPStYFSg1RQg==xU496tJxbGDGq1Ww';
+      const apiUrl = `https://api.api-ninjas.com/v1/recipe?query=${encodeURIComponent(randomQuery)}`;
 
-let currentInput = '';
-let previousInput = '';
-let operator = null;
-
-// Function to update the display
-function updateDisplay(value) {
-  display.textContent = value;
-}
-
-// Function to handle button clicks (Using Foreach method as mentioned in the class)
-buttons.forEach(button => {
-  
-  button.addEventListener('click', () => {
-    
-    const value = button.textContent;
-
-    // Handle clear button
-    if (value === 'C') {
-    
-      currentInput = '';
-      previousInput = '';
-      operator = null;
-      updateDisplay('0');
-      
-      return;
-    }
-
-    // To Handle backspace button
-    if (value === '←') {
-      currentInput = currentInput.slice(0, -1);
-      updateDisplay(currentInput || '0');
-      
-      return;
-    }
-
-    // To Handle number button clicks
-    if (!isNaN(value) || value === '0') {
-      currentInput += value;
-      updateDisplay(currentInput);
-      return;
-    }
-
-    // ToHandle operator button clicks
-    if (['+', '-', '×', '÷'].includes(value)) {
-      if (currentInput === '' && previousInput === '') {
-        return; // Prevent operator entry if no numbers exist
+      const response = await fetch(apiUrl, {
+          headers: { 'X-Api-Key': apiKey }
+      });
+      // If the API request fails, it throws an error with the response status and displays "Error fetching data" in the result div.
+      if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
 
-      if (currentInput !== '') {
-        if (previousInput !== '') {
-          previousInput = calculate(previousInput, currentInput, operator);
-          updateDisplay(previousInput);
-        } else {
-          previousInput = currentInput;
-        }
+      const data = await response.json();
+
+       // If no recipes were found, let the user know and stop further execution
+      if (data.length === 0) {
+          resultElement.textContent = "No high-protein food found.";
+          return;
       }
-      currentInput = '';
-      operator = value;
-      return;
-    }
 
-    // To Handle equal button click
-    if (value === '=') {
-      if (operator && previousInput !== '' && currentInput !== '') {
-        currentInput = calculate(previousInput, currentInput, operator);
-        
-        updateDisplay(currentInput);
-        previousInput = '';
-        operator = null;
-      }
-    }
-  });
-});
+      // Store the first recipe in the data array to display
+      //https://stackoverflow.com/questions/59922251/how-to-add-an-object-to-an-array-using-data-from-user-input
+      const recipe = data[0];
+      const ingredients = Array.isArray(recipe.ingredients) 
+          ? recipe.ingredients.join(', ') 
+          : recipe.ingredients || "Ingredients not listed";
+      // Create the HTML structure for displaying the recipe title, ingredients, and instructions
+      //https://dev.to/pinjarirehan/how-to-create-a-recipe-book-using-html-css-javascript-2bap
+      resultElement.innerHTML = `
+          <h2>${recipe.title}</h2>
+          <p><strong>Ingredients:</strong> ${ingredients}</p>
+          <p><strong>Instructions:</strong> ${recipe.instructions}</p>
+      `;
+  } catch (error) {
 
-// The Function to perform the calculations (basic switch case statements)
-
-function calculate(num1, num2, operator) {
-  num1 = parseFloat(num1);
-  num2 = parseFloat(num2);
-
-  switch (operator) {
-    case '+':
-      return (num1 + num2).toString();
-    case '-':
-      return (num1 - num2).toString();
-    case '×':
-      return (num1 * num2).toString();
-    case '÷':
-      if (num2 !== 0) {
-        return (num1 / num2).toString();
-      } else {
-        alert('Error: Division by zero');
-        return '0';
-      }
-    default:
-      return num2.toString();
+      // Display an error message if the API request fails
+      resultElement.textContent = "Error fetching teh data. Please try again later.";
+      console.error("Error:", error); // Log the error to the console for debugging purposes
   }
 }
+window.onload = () => {
+  // Initial animation for the button to scale it up slightly when the page loads (Duration Property)
+  //https://gsap.com/docs/v3/GSAP/Tween/vars/#duration
+  gsap.from("button", {
+      duration: 1,
+      scale: 0.8,
+      ease: "elastic.out(1, 0.3)" // Elastic easing to make it bounce
+  });
+
+  const button = document.querySelector("button");
+  // Scale up the button slightly on hover (enlarged the button with the help of scale property)
+  button.addEventListener("mouseenter", () => {
+      gsap.to(button, { scale: 1.05, duration: 0.2 });
+  });
+
+  button.addEventListener("mouseleave", () => {
+      gsap.to(button, { scale: 1, duration: 0.2 });
+  });
+
+  // New typewriter and color fade-in animation for "High Protein Food Finder"
+  const titleText = document.querySelector("h1");
+  const text = titleText.innerText; // To Store the original text
+
+  titleText.innerText = ""; // Clear text for typewriter effect
+  
+
+  // Used GSAP's TextPlugin to animate each character as if typing it out
+  gsap.to(titleText, {
+      text: text,
+      duration: 2,
+      ease: "power2.inOut",
+      delay: 0.5,
+  });
+  
+  // Change the color of the header text from pink to dark gray over 2 seconds
+  gsap.fromTo(titleText, 
+      { color: "#ff65a3" }, // Start color
+      { color: "#333", duration: 2, delay: 0.5, ease: "power2.inOut" } // End color
+  );
+};
+
+
